@@ -24,11 +24,7 @@ public class Enemy : BaseCharacter {
         if (type == EnemyAI.TRACKING && following)
         {
             // Go towards a player if further than following distance
-<<<<<<< HEAD
             direction = following.transform.position - transform.position;
-=======
-            direction = following.GetComponent<Rigidbody2D>().position - rb.position;
->>>>>>> refs/remotes/origin/tilemap-branch
             if (direction.magnitude > distance)
             {
                 return direction.normalized * speed;
