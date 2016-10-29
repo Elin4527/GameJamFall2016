@@ -7,11 +7,11 @@ public class CameraTracking : MonoBehaviour {
     {
         INSTANT, DECAY_PAN, TIME_DECAY_PAN, CONSTANT_PAN, TIME_CONSTANT_PAN
     }
-    public GameObject player;
+    public BaseCharacter player;
     public CameraType panType;
     public float SPEED = 1;
     public float TIME = 1;
-
+    public float zOffset = -1;
     float moveSpeed;
     float acceleration;
     Vector3 destination;
@@ -21,10 +21,21 @@ public class CameraTracking : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	}
+
+    void Update()
+    {
+        if (!player.gameObject.activeSelf)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                player.gameObject.SetActive(true);
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        setCameraDestination((player.GetComponent("BaseCharacter") as BaseCharacter).cameraPos);
+        setCameraDestination(player.cameraPos);
 
         if(panType == CameraType.INSTANT)
             transform.position = destination;
@@ -32,7 +43,7 @@ public class CameraTracking : MonoBehaviour {
         transform.position += moveSpeed * d.normalized * Time.deltaTime;
         moveSpeed -= acceleration * Time.deltaTime;
 
-        if(Vector3.Dot((destination - transform.position), d) < 0.0f || moveSpeed < 0.0f)
+        if(Vector3.Dot((destination - transform.position), d) <= 0.0f || moveSpeed < 0.0f)
         {
             moveSpeed = 0.0f;
             acceleration = 0.0f;
@@ -40,11 +51,22 @@ public class CameraTracking : MonoBehaviour {
         }
 	}
 
+    void setCameraPosition(Vector3 v)
+    {
+        v.z += zOffset;
+        transform.position = destination = v;
+        d = Vector3.zero;
+        moveSpeed = 0.0f;
+        acceleration = 0.0f;
+    }
+
     void setCameraDestination(Vector3 v)
     {
+        v.z += zOffset;
         if (v == destination) return;
         destination = v;
         d = v - transform.position;
+
         switch (panType)
         {
             case CameraType.CONSTANT_PAN:
@@ -64,5 +86,6 @@ public class CameraTracking : MonoBehaviour {
                 acceleration = (moveSpeed * moveSpeed) / (2 * (v - transform.position).magnitude);
                 break;
         }
+        
     }
 }
