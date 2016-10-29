@@ -20,7 +20,6 @@ public class Enemy : BaseCharacter {
         {
             // Go towards a player if further than following distance
             direction = following.GetComponent<Rigidbody2D>().position - rb.position;
-            Debug.Log(direction);
             if (direction.magnitude > distance)
             {
                 return direction.normalized * speed;
