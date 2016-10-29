@@ -1,25 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseCharacter : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody2D))]
+public abstract class BaseCharacter : MonoBehaviour {
 
     public float speed = 3;
     public float camOffset = 5;
     public Vector3 cameraPos;
     Vector2 targetVel = Vector2.zero;
+    Vector2 vel;
     Vector2 delta;
-    public Rigidbody2D rb;
-    public Vector2 direction;
-    // Use this for initialization
+    protected Rigidbody2D rb;
+    protected Vector2 direction;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        init();
     }
+
+    protected virtual void init()
+    { }
 
     void FixedUpdate()
     {
-        rb.velocity += delta;
+        rb.velocity = vel += delta;
         if (Mathf.Abs(rb.velocity.x - targetVel.x) + Mathf.Abs(rb.velocity.y - targetVel.y) < 0.1f)
         {
             setVelocity(targetVel);
@@ -29,6 +35,9 @@ public class BaseCharacter : MonoBehaviour {
 
     void Update()
     {
+        Vector2 i = getInput();
+        setTargetVel(i);
+        logic();
         Vector2 pos = rb.position + direction.normalized * camOffset;
         cameraPos = new Vector3(pos.x, pos.y, transform.position.z - 1);
     }
@@ -57,4 +66,7 @@ public class BaseCharacter : MonoBehaviour {
     {
         return targetVel != Vector2.zero;
     }
+
+    public abstract Vector2 getInput();
+    public abstract void logic();
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : BaseCharacter {
 
     enum ActionState
     {
@@ -10,16 +10,15 @@ public class Player : MonoBehaviour {
 
     ActionState state = ActionState.STANDARD;
     float actionTime;
-    BaseCharacter scr;
     Animator anim;
+
 	// Use this for initialization
-	void Start () {
+	protected override void init () {
         anim = GetComponent<Animator>();
-        scr = GetComponent<BaseCharacter>();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	public override void logic () {
         switch (state)
         {
             case ActionState.DASHING:
@@ -29,8 +28,8 @@ public class Player : MonoBehaviour {
                     {
                         state = ActionState.STANDARD;
                         anim.speed = 1.0f;
-                        scr.setVelocity(scr.direction.normalized * scr.speed);
-                        scr.setTargetVel(new Vector2(0, 0));
+                        setVelocity(direction.normalized * speed);
+                        setTargetVel(new Vector2(0, 0));
                     }
                     break;
                 }
@@ -45,14 +44,12 @@ public class Player : MonoBehaviour {
 
     void walking()
     {
-        getInput();
-
-        bool isWalking = scr.isWalking();
-        anim.SetBool("isWalking", isWalking);
-        if (isWalking)
+        bool walk = isWalking();
+        anim.SetBool("isWalking", walk);
+        if (walk)
         {
-            anim.SetFloat("x", scr.rb.velocity.x);
-            anim.SetFloat("y", scr.rb.velocity.y);
+            anim.SetFloat("x", rb.velocity.x);
+            anim.SetFloat("y", rb.velocity.y);
         }
     }
 
@@ -60,18 +57,24 @@ public class Player : MonoBehaviour {
     {
         state = ActionState.DASHING;
         actionTime = 0.2f;
-        scr.setVelocity(scr.direction.normalized * (scr.speed * 4.0f + scr.rb.velocity.magnitude) / 2.0f);
+        setVelocity(direction.normalized * (speed * 4.0f + rb.velocity.magnitude) / 2.0f);
 
         anim.speed = 2.0f;
     }
 
-    void getInput()
+    public override Vector2 getInput()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        Debug.Log("THIS");
-        scr.setTargetVel(new Vector2(x, y).normalized * scr.speed);
+        if (state == ActionState.STANDARD)
+        {
+            float x = Input.GetAxisRaw("Horizontal");
+            float y = Input.GetAxisRaw("Vertical");
+            setTargetVel(new Vector2(x, y).normalized * speed);
 
-        if (Input.GetButtonDown("Jump") && scr.isWalking()) dash();
+            if (Input.GetButtonDown("Jump") && isWalking()) dash();
+
+            return (new Vector2(x, y).normalized * speed);
+        }
+        else
+            return rb.velocity;
     }
 }
