@@ -177,7 +177,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &177939658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   player: {fileID: 1691048064}
   panType: 4
   SPEED: 3
-  TIME: 0.5
+  TIME: 1
   zOffset: -1
 --- !u!1 &354256468
 GameObject:
@@ -293,16 +293,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013811781576, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012601896628, guid: 9f67a18d0c64fd94ca8744f600a2d2c9,
-        type: 2}
-      propertyPath: invincibleDuration
-      value: 0.35
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013839583628, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 2}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012601896628, guid: 9f67a18d0c64fd94ca8744f600a2d2c9,
+        type: 2}
+      propertyPath: speed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 2}
@@ -375,7 +375,18 @@ Prefab:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011666224750, guid: 244cd18374e8e024b9debb4dff45184a,
+        type: 2}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000013769466972, guid: 244cd18374e8e024b9debb4dff45184a,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 0}
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 244cd18374e8e024b9debb4dff45184a, type: 2}
   m_IsPrefabParent: 0
@@ -430,7 +441,7 @@ Prefab:
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
       propertyPath: speed
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
@@ -440,12 +451,12 @@ Prefab:
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
       propertyPath: dynamic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
       propertyPath: bulletCount
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
@@ -470,12 +481,12 @@ Prefab:
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
       propertyPath: timeRemaining
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000011846720720, guid: ac312afde0d65c742ae1a9383a47be48,
         type: 2}
       propertyPath: distance
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac312afde0d65c742ae1a9383a47be48, type: 2}
@@ -490,6 +501,23 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013839583628, guid: 9f67a18d0c64fd94ca8744f600a2d2c9,
     type: 2}
   m_PrefabInternal: {fileID: 582443015}
+--- !u!50 &1691048063
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1691048060}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &1691048064 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000012601896628, guid: 9f67a18d0c64fd94ca8744f600a2d2c9,
