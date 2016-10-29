@@ -103,6 +103,7 @@ GameObject:
   - 124: {fileID: 177939654}
   - 81: {fileID: 177939653}
   - 114: {fileID: 177939658}
+  - 114: {fileID: 177939659}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -194,6 +195,24 @@ MonoBehaviour:
   SPEED: 3
   TIME: 1
   zOffset: -1
+--- !u!114 &177939659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 177939652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42741a2b6eeecd4c866e818cca9a89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textFile: {fileID: 4900000, guid: 7609da402449d5540a51c0e97df2242e, type: 3}
+  floorTiles:
+  - {fileID: 1000011355593892, guid: 2d05be350cabe6d41b604e46b6e930b9, type: 2}
+  - {fileID: 1000012066704224, guid: 7fb3b2f751d91c947adb698bd1c786ec, type: 2}
+  wallTiles:
+  - {fileID: 1000013343210806, guid: adbf596383cf3574db3343e13a7c7fa9, type: 2}
+  - {fileID: 1000013147083260, guid: fc51a2352208d124388a7f20a0efe627, type: 2}
 --- !u!1 &354256468
 GameObject:
   m_ObjectHideFlags: 0
