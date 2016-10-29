@@ -1,12 +1,14 @@
 fileFormatVersion: 2
-guid: 312d94411a2f17d4ea8e70dffe8701c2
-timeCreated: 1477757561
+guid: d5b8fe23d6b925b48b61050d6378f970
+timeCreated: 1477706033
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: lslashAnim_0
-    21300002: lslashAnim_1
-    21300004: lslashAnim_2
+    21300000: bullet_1_sheet_0
+    21300002: bullet_1_sheet_1
+    21300004: bullet_1_sheet_2
+    21300006: bullet_1_sheet_3
+    21300008: bullet_1_sheet_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,39 +58,65 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lslashAnim_0
+      name: bullet_1_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 15
-        height: 30
+        width: 14
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lslashAnim_1
+      name: bullet_1_sheet_1
       rect:
         serializedVersion: 2
-        x: 15
+        x: 14
         y: 0
-        width: 15
-        height: 30
+        width: 14
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lslashAnim_2
+      name: bullet_1_sheet_2
       rect:
         serializedVersion: 2
-        x: 30
+        x: 28
         y: 0
-        width: 15
-        height: 30
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bullet_1_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 0
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: bullet_1_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 14
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
