@@ -24,7 +24,7 @@ public class CameraTracking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        setCameraDestination((player.GetComponent("PlayerMovement") as PlayerMovement).cameraPos);
+        setCameraDestination((player.GetComponent("BaseCharacter") as BaseCharacter).cameraPos);
 
         if(panType == CameraType.INSTANT)
             transform.position = destination;
