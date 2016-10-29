@@ -45,6 +45,7 @@ public class BulletSpawner : MonoBehaviour {
         }
         if (timeRemaining <= 0)
         {
+            // Set initial firing variables based on public variables
             firing = true;
             timeRemaining = cooldown;
             if (track)
@@ -61,6 +62,7 @@ public class BulletSpawner : MonoBehaviour {
 
         if (firing)
         {
+            // Instant firing
             if (delay <= 0)
             {
                 for (int i = 0; i < bulletCount; i++)
@@ -70,6 +72,7 @@ public class BulletSpawner : MonoBehaviour {
                 }
                 firing = false;
             }
+            // Shoot individual by delay    
             else {
                 wait += Time.deltaTime;
                 float t = total ? (delay / bulletCount) : delay;

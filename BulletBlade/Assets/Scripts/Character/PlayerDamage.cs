@@ -3,9 +3,10 @@ using System.Collections;
 
 public class PlayerDamage : MonoBehaviour {
 
+    Player parent;
 	// Use this for initialization
 	void Start () {
-	
+        parent = GetComponentInParent<Player>();
 	}
 	
 	// Update is called once per frame
@@ -14,7 +15,10 @@ public class PlayerDamage : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit");
-        Destroy(collision.gameObject);
+        if (parent.isTangible())
+        {
+            Destroy(collision.gameObject);
+            parent.kill();
+        }
     }
 }

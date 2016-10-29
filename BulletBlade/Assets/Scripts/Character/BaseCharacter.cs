@@ -7,11 +7,11 @@ public abstract class BaseCharacter : MonoBehaviour {
     public float speed = 3;
     public float camOffset = 5;
     public Vector3 cameraPos;
-    Vector2 targetVel = Vector2.zero;
+    public Vector2 targetVel = Vector2.zero;
     Vector2 vel;
     Vector2 delta;
     protected Rigidbody2D rb;
-    protected Vector2 direction;
+    public Vector2 direction;
     
     void Start()
     {
@@ -38,8 +38,14 @@ public abstract class BaseCharacter : MonoBehaviour {
         Vector2 i = getInput();
         setTargetVel(i);
         logic();
-        Vector2 pos = rb.position + direction.normalized * camOffset;
-        cameraPos = new Vector3(pos.x, pos.y, transform.position.z - 1);
+        cameraPos = rb.position + direction.normalized * camOffset;
+    }
+
+    public void reset()
+    {
+        setVelocity(Vector2.zero);
+        direction = Vector2.zero;
+        cameraPos = rb.position + direction.normalized * camOffset;
     }
 
     public void setTargetVel(Vector2 v)
@@ -52,7 +58,7 @@ public abstract class BaseCharacter : MonoBehaviour {
 
     public void setVelocity(Vector2 v)
     {
-        rb.velocity = v;
+        rb.velocity = vel = v;
         setTargetVel(v);
         delta = Vector2.zero;
     }

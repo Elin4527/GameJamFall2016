@@ -9,6 +9,9 @@ public class Player : BaseCharacter {
     }
 
     ActionState state = ActionState.STANDARD;
+    public float dashDuration = 0.3f;
+    public float invincibleDuration = 0.4f;
+    float invincibleTIme;
     float actionTime;
     Animator anim;
 
@@ -40,6 +43,19 @@ public class Player : BaseCharacter {
                 walking();
                 break;
         }
+        invincibleTIme -= Time.deltaTime;
+    }
+
+    public bool isTangible()
+    {
+        return state == ActionState.STANDARD;
+    }
+
+    public void kill()
+    {
+        reset();
+
+        gameObject.SetActive(false);
     }
 
     void walking()
@@ -56,10 +72,15 @@ public class Player : BaseCharacter {
     void dash()
     {
         state = ActionState.DASHING;
-        actionTime = 0.2f;
-        setVelocity(direction.normalized * (speed * 4.0f + rb.velocity.magnitude) / 2.0f);
+        actionTime = dashDuration;
+        invincibleTIme = invincibleDuration;
 
-        anim.speed = 2.0f;
+        // Dash towards mouse cursor
+        Vector2 towards = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        setVelocity(towards.normalized * Mathf.Min((speed * 2.0f * rb.velocity.magnitude), towards.magnitude/dashDuration));
+        anim.SetFloat("x", rb.velocity.x);
+        anim.SetFloat("y", rb.velocity.y);
+        anim.speed = 4.0f;
     }
 
     public override Vector2 getInput()
@@ -70,8 +91,11 @@ public class Player : BaseCharacter {
             float y = Input.GetAxisRaw("Vertical");
             setTargetVel(new Vector2(x, y).normalized * speed);
 
-            if (Input.GetButtonDown("Jump") && isWalking()) dash();
-
+            if (Input.GetMouseButtonDown(0) && isWalking())
+            {
+                dash();
+            }
+            
             return (new Vector2(x, y).normalized * speed);
         }
         else
