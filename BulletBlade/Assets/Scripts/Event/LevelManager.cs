@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour {
         Vector3 boardTranslate = instantiatedTileMap.GetComponent<TileMapGen>().getBoardTranslate();
         int rows = instantiatedTileMap.GetComponent<TileMapGen>().rows;
 
-        Vector3 loc = new Vector3(tileCoords.x + boardTranslate.x, boardTranslate.x + tileCoords.y - (rows-1));
+        Vector3 loc = new Vector3(tileCoords.x + boardTranslate.x, boardTranslate.y + tileCoords.y - (rows-1));
 
         return loc;
 

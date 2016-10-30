@@ -12,13 +12,17 @@ public class Timeline : MonoBehaviour {
         public float startTime;
         public Vector2 tileCoords;
         public GameObject enemy;
+        public GameObject attack;
+        public float despawn;
         // public AttackPattern;
 
-        public SpawnEnemyEventField(float startTime, Vector2 tileCoords, GameObject enemy)
+        public SpawnEnemyEventField(float startTime, Vector2 tileCoords, GameObject enemy, GameObject attack, float despawn)
         {
             this.startTime = startTime;
             this.tileCoords = tileCoords;
             this.enemy = enemy;
+            this.attack = attack;
+            this.despawn = despawn;
         }
     }
 
@@ -66,7 +70,7 @@ public class Timeline : MonoBehaviour {
     SpawnEnemyEvent constructSpawnEnemyEvent(SpawnEnemyEventField f)
     {
         SpawnEnemyEvent cons = ScriptableObject.CreateInstance("SpawnEnemyEvent") as SpawnEnemyEvent;
-        cons.init(f.startTime, this.transform, f.tileCoords, f.enemy);
+        cons.init(f.startTime, f.despawn, this.transform, f.tileCoords, f.enemy, f.attack);
 
         return cons;
     }
@@ -74,7 +78,7 @@ public class Timeline : MonoBehaviour {
     BossSpawnEvent constructBossSpawnEvent(SpawnEnemyEventField f)
     {
         BossSpawnEvent cons = ScriptableObject.CreateInstance("BossSpawnEvent") as BossSpawnEvent;
-        cons.init(f.startTime, this.transform, f.tileCoords, f.enemy);
+        cons.init(f.startTime, f.despawn, this.transform, f.tileCoords, f.enemy, f.attack);
 
         return cons;
     }
@@ -103,12 +107,5 @@ public class Timeline : MonoBehaviour {
             nextLevelEvent.init(clock + nextLevelDelay, this.transform);
             addEventToQueue(nextLevelEvent);
         }
-
-
-
     }
-
-
-
-
 }

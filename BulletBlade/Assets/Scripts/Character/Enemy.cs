@@ -14,6 +14,8 @@ public class Enemy : BaseCharacter {
     public float distance;
     public int maxHealth = 1;
     public int points;
+    public float despawnTime;
+    float lifeTimer;
     int currHealth;
     Animator anim;
     float spawnTime;
@@ -47,18 +49,33 @@ public class Enemy : BaseCharacter {
 
     public override void logic()
     {
-        spawnTime -= Time.deltaTime;
-        if (currHealth <= 0 && !dying)
+        if (spawnTime >= 0)
         {
-            StartCoroutine("die");
+            spawnTime -= Time.deltaTime;
+        }
+        else if (despawnTime != 0)
+        {
+            lifeTimer += Time.deltaTime;
+        }
+        if (lifeTimer > despawnTime && !dying)
+        {
+            StartCoroutine("despawn");
+        }
+        else if (currHealth <= 0 && !dying)
+        {
+            die();
         }
     }
-
-    public IEnumerator die()
+    public void die()
+    {
+        StartCoroutine("despawn");
+        p.score += points;
+    }
+    public IEnumerator despawn()
     {
         dying = true;
         anim.SetBool("spawn", false);
-        p.score += points;
+
         yield return new WaitForEndOfFrame();
         BulletSpawner[] b = GetComponentsInChildren<BulletSpawner>();
         for (int i = 0; i < b.Length; i++)

@@ -24,7 +24,7 @@ public class AttackPattern : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        e = GetComponent<Enemy>();
+        e = GetComponentInParent<Enemy>();
 	}
 	
 	// Update is called once per frame
@@ -40,7 +40,6 @@ public class AttackPattern : MonoBehaviour {
                 GameObject g = Instantiate(a.spawner, e.gameObject.transform.position, Quaternion.identity) as GameObject;
                 g.transform.SetParent(e.transform);
                 BulletSpawner s = g.GetComponent<BulletSpawner>();
-
 
                 s.prefab = a.bullet;
                 s.behaviour = a.behaviour;
