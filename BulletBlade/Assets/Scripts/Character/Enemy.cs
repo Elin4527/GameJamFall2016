@@ -25,6 +25,8 @@ public class Enemy : BaseCharacter {
     protected override void init()
     {
         p = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (following == null)
+            following = p;
         currHealth = maxHealth;
         anim = GetComponent<Animator>();
         anim.SetBool("spawn", true);

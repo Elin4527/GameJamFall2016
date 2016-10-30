@@ -89,10 +89,10 @@ MonoBehaviour:
     attack: {fileID: 1000013571946396, guid: 58a04bfe27051e0429de05d29813a6ba, type: 2}
     despawn: 15
   bossSpawnEvent:
-    name: Pepper
+    name: Pumpkin
     startTime: 40
     tileCoords: {x: 30, y: 10}
-    enemy: {fileID: 1000013488066962, guid: 244cd18374e8e024b9debb4dff45184a, type: 2}
+    enemy: {fileID: 1000013670367058, guid: 37c855f190bd6ce45a52a670b1cfea8b, type: 2}
     attack: {fileID: 1000011970584258, guid: d1f898fd0bf4f1b458d77a9f24280b8d, type: 2}
     despawn: 0
   nextLevelDelay: 10
