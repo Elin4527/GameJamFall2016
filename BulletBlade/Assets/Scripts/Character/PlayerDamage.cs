@@ -15,10 +15,9 @@ public class PlayerDamage : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (parent.isTangible() && collision.gameObject.GetComponent<Bullet>())
+        if (collision.gameObject.GetComponent<Bullet>())
         {
-            Destroy(collision.gameObject);
-            parent.kill();
+            parent.graze = true;
         }
     }
 }

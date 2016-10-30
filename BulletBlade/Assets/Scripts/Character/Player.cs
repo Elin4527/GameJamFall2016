@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : BaseCharacter {
 
@@ -19,16 +20,38 @@ public class Player : BaseCharacter {
     public int damage;
     float cdRemain = 0;
     public int grazeCount = 0;
-    bool graze = false;
-    
+    public bool graze = false;
+    public int maxMana;
+    public int mana;
+    public int manaCost;
+
+    public float cloneTime;
+    float cloneCD;
 
 	// Use this for initialization
 	protected override void init () {
         anim = GetComponent<Animator>();
-	}
+        anim.speed = 1.4f;
+        manaCost = maxMana / 4;
+    }
 
-	// Update is called once per frame
-	public override void logic () {
+    public override void fixedLogic()
+    {
+        if (graze)
+        {
+            grazeCount++;
+            graze = false;
+            mana++;
+        }
+        mana++;
+        if (mana > maxMana)
+        {
+            mana = maxMana;
+        }
+    }
+
+    // Update is called once per frame
+    public override void logic () {
         direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
 
         switch (state)
@@ -36,17 +59,32 @@ public class Player : BaseCharacter {
 
             case ActionState.DASHING:
                 {
+                    cloneCD -= Time.deltaTime;
                     actionTime -= Time.deltaTime;
-                    SpriteRenderer s = GetComponent<SpriteRenderer>();
-                    
-                    //GameObject g = (GameObject)Instantiate(GetComponent<SpriteRenderer>(), transform.position, Quaternion.identity);
-                    //Destroy(g, 0.5f);
+
+
                     if (actionTime < 0.0)
                     {
                         state = ActionState.STANDARD;
-                        anim.speed = 1.0f;
+                        anim.speed = 1.4f;
                         setVelocity(direction.normalized * speed);
                         setTargetVel(new Vector2(0, 0));
+                        anim.SetBool("isDashing", false);
+                    }
+                    else if (cloneCD <= 0)
+                    {
+                        SpriteRenderer s = GetComponent<SpriteRenderer>();
+                        Sprite spr = s.sprite;
+                        
+                        GameObject o = new GameObject();
+                        cloneCD += cloneTime;
+
+                        o.transform.position = transform.position;
+                        SpriteRenderer g = o.AddComponent<SpriteRenderer>() as SpriteRenderer;
+                        g.color = new Color(1.0f, 0,.3f, (1 - actionTime/dashDuration) * 0.6f + 0.4f);
+                        g.sprite = spr;
+
+                        Destroy(o, actionTime);
                     }
                     break;
                 }
@@ -58,11 +96,7 @@ public class Player : BaseCharacter {
                 break;
         }
         invincibleTIme -= Time.deltaTime;
-        if (graze)
-        {
-            grazeCount++;
-            graze = false;
-        }
+
     }
 
     public bool isTangible()
@@ -81,10 +115,6 @@ public class Player : BaseCharacter {
     {
         bool walk = isWalking();
         anim.SetBool("isWalking", walk);
-
-            anim.SetFloat("x", 0);
-            anim.SetFloat("y", -1);
-        
     }
 
     void dash()
@@ -92,13 +122,13 @@ public class Player : BaseCharacter {
         state = ActionState.DASHING;
         actionTime = dashDuration;
         invincibleTIme = invincibleDuration;
+        cloneCD = 0.0f;
 
         // Dash towards mouse cursor
         Vector2 towards = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-        setVelocity(towards.normalized * Mathf.Min((speed * 2.0f * vel.magnitude), towards.magnitude/dashDuration));
-        anim.SetFloat("x", vel.x);
-        anim.SetFloat("y", vel.y);
-        anim.speed = 4.0f;
+        setVelocity(towards.normalized * Mathf.Min((speed * 2.0f), towards.magnitude/dashDuration));
+
+        anim.SetBool("isDashing", true);
     }
 
     void attack()
@@ -123,8 +153,9 @@ public class Player : BaseCharacter {
             float y = Input.GetAxisRaw("Vertical");
             setTargetVel(new Vector2(x, y).normalized * speed);
 
-            if (Input.GetMouseButtonDown(0) && isWalking())
+            if (Input.GetMouseButtonDown(0) && mana > manaCost)
             {
+                mana -= manaCost;
                 dash();
             }
 
@@ -134,11 +165,14 @@ public class Player : BaseCharacter {
             return vel;
     }
 
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Bullet>())
+        if (isTangible() && collision.gameObject.GetComponent<Bullet>())
         {
-            graze = true;
+            Destroy(collision.gameObject);
+            kill();
         }
     }
 }

@@ -13,10 +13,14 @@ public class Enemy : BaseCharacter {
     public float distance;
     public int maxHealth = 1;
     int currHealth;
+    Animator anim;
+
 
     protected override void init()
     {
         currHealth = maxHealth;
+        anim = GetComponent<Animator>();
+        anim.SetBool("spawn", true);
     }
 
     public override Vector2 getInput()
@@ -37,7 +41,11 @@ public class Enemy : BaseCharacter {
 
     public override void logic()
     {
-        if (currHealth <= 0) Destroy(gameObject);
+        if (currHealth <= 0)
+        {
+            anim.SetBool("spawn", false);
+            Destroy(gameObject, anim.GetNextAnimatorClipInfo(0)[0].clip.length);
+        }
     }
 
     public void hit(int damage)
