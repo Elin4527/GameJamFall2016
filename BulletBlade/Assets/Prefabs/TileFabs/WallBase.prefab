@@ -23,9 +23,9 @@ GameObject:
   - 114: {fileID: 114000012341042634}
   - 61: {fileID: 61000012727565786}
   - 114: {fileID: 114000010826657818}
-  m_Layer: 0
+  m_Layer: 10
+  m_TagString: Walls
   m_Name: WallBase
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

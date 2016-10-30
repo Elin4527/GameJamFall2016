@@ -14,7 +14,7 @@ public class Player : BaseCharacter {
     public float dashDuration = 0.3f;
     public float invincibleDuration = 0.4f;
     public float attackCd;
-    float invincibleTIme;
+    float invincibleTime;
     float actionTime;
     Animator anim;
     public int damage;
@@ -27,6 +27,15 @@ public class Player : BaseCharacter {
 
     public float cloneTime;
     float cloneCD;
+    public int power = 1;
+    public int maxPower = 128;
+    public int lives = 3;
+    public int score = 0;
+    public float flickerTime;
+    float flickerCD;
+    bool flicker;
+
+
 
 	// Use this for initialization
 	protected override void init () {
@@ -41,6 +50,8 @@ public class Player : BaseCharacter {
         {
             grazeCount++;
             graze = false;
+            if (++power > maxPower)
+                power = maxPower;
             mana++;
         }
         mana++;
@@ -48,6 +59,13 @@ public class Player : BaseCharacter {
         {
             mana = maxMana;
         }
+    }
+
+    public void setInvulnerable(float f, bool flick)
+    {
+        invincibleTime = f;
+        flickerCD = flickerTime;
+        flicker = flick;
     }
 
     // Update is called once per frame
@@ -95,19 +113,27 @@ public class Player : BaseCharacter {
                 walking();
                 break;
         }
-        invincibleTIme -= Time.deltaTime;
-
+        invincibleTime -= Time.deltaTime;
+        flickerCD -= Time.deltaTime;
+        if (invincibleTime > 0 && flickerCD <= 0 && flicker)
+        {
+            flickerCD += flickerTime;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        }
+        else {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
     public bool isTangible()
     {
-        return state == ActionState.STANDARD;
+        return invincibleTime <= 0;
     }
 
     public void kill()
     {
         reset();
-
+        lives--;
         gameObject.SetActive(false);
     }
 
@@ -121,7 +147,7 @@ public class Player : BaseCharacter {
     {
         state = ActionState.DASHING;
         actionTime = dashDuration;
-        invincibleTIme = invincibleDuration;
+        setInvulnerable(invincibleDuration, false);
         cloneCD = 0.0f;
 
         // Dash towards mouse cursor
@@ -136,7 +162,7 @@ public class Player : BaseCharacter {
         GameObject g = (GameObject)Instantiate(atkObj, transform.position + (Vector3)direction.normalized * 1, 
             Quaternion.Euler(0, 0, ((direction.y < 0) ? -1 : 1) * Vector2.Angle(Vector2.right, direction)));
         Attack a = g.GetComponent<Attack>();
-        a.damage = damage;
+        a.damage = power;
     }
 
     public override Vector2 getInput()
@@ -165,14 +191,13 @@ public class Player : BaseCharacter {
             return vel;
     }
 
-
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (isTangible() && collision.gameObject.GetComponent<Bullet>())
         {
             Destroy(collision.gameObject);
-            kill();
+            if(gameObject.activeSelf)
+                kill();
         }
     }
 }
