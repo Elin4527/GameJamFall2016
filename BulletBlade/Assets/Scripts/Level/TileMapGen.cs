@@ -106,7 +106,7 @@ public class TileMapGen : MonoBehaviour
                     toInstantiate = wallTop;
                 }
 
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x, -y, 0.0f), Quaternion.identity) as GameObject;
+                GameObject instance = Instantiate(toInstantiate, new Vector3(x, -y + ((toInstantiate == wallTop)?0.25f:0) , 0.0f), Quaternion.identity) as GameObject;
 
                 instance.transform.SetParent(boardHolder);
 

@@ -9,6 +9,7 @@ BulletBlade/Assets/AssetStoreTools*
 ExportedObj/
 *.csproj
 *.unityproj
+*.unity
 *.sln
 *.suo
 *.tmp

@@ -4,12 +4,13 @@ using System;
 
 public class Player : BaseCharacter {
 
-    enum ActionState
+    public enum ActionState
     {
-        STANDARD, DASHING
+        STANDARD, DASHING, DYING
     }
 
-    ActionState state = ActionState.STANDARD;
+
+    public ActionState state = ActionState.STANDARD;
     public GameObject atkObj;
     public float dashDuration = 0.3f;
     public float invincibleDuration = 0.4f;
@@ -34,14 +35,19 @@ public class Player : BaseCharacter {
     public float flickerTime;
     float flickerCD;
     bool flicker;
+    float deathTime = 1.0f;
 
 
 
 	// Use this for initialization
 	protected override void init () {
+
         anim = GetComponent<Animator>();
         anim.speed = 1.4f;
         manaCost = maxMana / 4;
+        mana = maxMana / 2;
+        deathTime = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length - .1f;
+
     }
 
     public override void fixedLogic()
@@ -59,6 +65,7 @@ public class Player : BaseCharacter {
         {
             mana = maxMana;
         }
+
     }
 
     public void setInvulnerable(float f, bool flick)
@@ -74,7 +81,22 @@ public class Player : BaseCharacter {
 
         switch (state)
         {
+            case ActionState.DYING:
+                {
+                    deathTime -= Time.fixedDeltaTime;
+                    if (deathTime < 0)
+                    {
+                        deathTime = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+                        anim.SetBool("spawn", true);
+                        reset();
+                        lives--;
+                        state = ActionState.STANDARD;
+                        gameObject.SetActive(false);
 
+
+                    }
+                    break;
+                }
             case ActionState.DASHING:
                 {
                     cloneCD -= Time.deltaTime;
@@ -123,6 +145,7 @@ public class Player : BaseCharacter {
         else {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
+
     }
 
     public bool isTangible()
@@ -132,9 +155,8 @@ public class Player : BaseCharacter {
 
     public void kill()
     {
-        reset();
-        lives--;
-        gameObject.SetActive(false);
+        state = ActionState.DYING;
+        anim.SetBool("spawn", false);
     }
 
     void walking()
@@ -187,17 +209,11 @@ public class Player : BaseCharacter {
 
             return (new Vector2(x, y).normalized * speed);
         }
+        else if (state == ActionState.DYING)
+            return Vector2.zero;
         else
             return vel;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (isTangible() && collision.gameObject.GetComponent<Bullet>())
-        {
-            Destroy(collision.gameObject);
-            if(gameObject.activeSelf)
-                kill();
-        }
-    }
+
 }

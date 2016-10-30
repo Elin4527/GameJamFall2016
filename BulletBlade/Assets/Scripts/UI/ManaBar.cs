@@ -7,7 +7,9 @@ public class ManaBar : MonoBehaviour {
 
     public Player player;
     public Color low;
-    public Color medium;
+    public Color medLow;
+    public Color med;
+    public Color medHigh;
     public Color high;
     float full;
     RectTransform rt;
@@ -22,17 +24,15 @@ public class ManaBar : MonoBehaviour {
 	void Update () {
         
         rt.localScale = new Vector3(((float)player.mana) / ((float)player.maxMana) * full, rt.localScale.y , rt.localScale.z);
-        if (player.mana < player.manaCost)
-        {
-            i.color = low;
-        }
-        else if (player.mana < player.maxMana)
-        {
-            i.color = medium;
-        }
-        else
-        {
+        if (player.mana == player.maxMana)
             i.color = high;
-        }
+        else if (player.mana > player.manaCost * 3)
+            i.color = medHigh;
+        else if (player.mana > player.maxMana / 2)
+            i.color = med;
+        else if (player.mana > player.manaCost)
+            i.color = medLow;
+        else
+            i.color = low;
 	}
 }
