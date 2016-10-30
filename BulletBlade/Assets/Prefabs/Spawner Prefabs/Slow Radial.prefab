@@ -51,10 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327b463ef7a1da2428d50fc71a2e8da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletCount: 30
+  bulletCount: 20
   delay: 0.1
   cooldown: 5
   coneAngle: 365
+  offset: 0
   speed: 3
   distance: 2
   direction: {x: 1, y: 0}
@@ -63,6 +64,7 @@ MonoBehaviour:
   clockwise: 1
   total: 0
   times: 0
+  clr: {r: 0, g: 0, b: 0, a: 0}
   timeRemaining: 2
   prefab: {fileID: 1000012910095538, guid: f48fd504e9d48274888c1f09be810db4, type: 2}
   behaviour: {fileID: 1000013105893968, guid: 22dff4214c6466544b2469e1c762a963, type: 2}

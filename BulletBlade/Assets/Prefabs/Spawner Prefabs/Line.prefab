@@ -64,6 +64,7 @@ MonoBehaviour:
   clockwise: 1
   total: 1
   times: 0
+  clr: {r: 0, g: 0, b: 0, a: 0}
   timeRemaining: 2
   prefab: {fileID: 1000012910095538, guid: f48fd504e9d48274888c1f09be810db4, type: 2}
   behaviour: {fileID: 1000011865605014, guid: 7961d49313195eb479400b0354143c4c, type: 2}
