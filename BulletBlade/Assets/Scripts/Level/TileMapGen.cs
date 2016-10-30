@@ -6,12 +6,15 @@ using Random = UnityEngine.Random;
 public class TileMapGen : MonoBehaviour
 {
 
-   
-
     public TextAsset textFile;
-    int [][] map;
-    int columns;
-    int rows;
+
+    [HideInInspector]
+    public int [][] map;
+
+    [HideInInspector]
+    public int columns;
+    [HideInInspector]
+    public int rows;
 
     public GameObject floorTile;   // 0
     public GameObject wallBase;    // 1
@@ -19,9 +22,6 @@ public class TileMapGen : MonoBehaviour
     public GameObject wallTop;     // 3
 
     public Vector3 boardTranslate;
-
-    private Transform boardHolder;
-
 
     void Awake()
     {
@@ -74,9 +74,7 @@ public class TileMapGen : MonoBehaviour
     {
 
 
-        boardHolder = new GameObject("Board").transform;
-
-
+        gameObject.transform.Translate(boardTranslate);
 
         GameObject toInstantiate = null;
 
@@ -91,7 +89,7 @@ public class TileMapGen : MonoBehaviour
                     toInstantiate = floorTile;
                 }
 
-                else if (map[y][x]== 1)
+                else if (map[y][x] == 1)
                 {
                     toInstantiate = wallBase;
                 }
@@ -106,18 +104,27 @@ public class TileMapGen : MonoBehaviour
                     toInstantiate = wallTop;
                 }
 
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x, -y + ((toInstantiate == wallTop)?0.25f:0) , 0.0f), Quaternion.identity) as GameObject;
+                GameObject instance = Instantiate(toInstantiate, new Vector3(x, -y + ((toInstantiate == wallTop) ? 0.25f : 0), 0.0f), Quaternion.identity) as GameObject;
 
-                instance.transform.SetParent(boardHolder);
+                instance.transform.SetParent(gameObject.transform);
 
             }
 
         }
     }
 
+    public Vector3 getBoardTranslate()
+    {
+        return boardTranslate;
+    }
+
     void Update()
     {
-        boardHolder.position = boardTranslate;
+        gameObject.transform.position = boardTranslate;
     }
+
+
+
+
 
 }
