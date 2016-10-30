@@ -24,7 +24,7 @@ GameObject:
   - 124: {fileID: 124000011326549010}
   - 81: {fileID: 81000014026456856}
   - 114: {fileID: 114000011666332044}
-  - 114: {fileID: 114000014033579052}
+  - 114: {fileID: 114000013328932288}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -38,8 +38,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014162302210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.9217005, y: -8.680167, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -105,11 +105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  panType: 4
+  panType: 0
   SPEED: 3
   TIME: 1
   zOffset: -1
---- !u!114 &114000014033579052
+--- !u!114 &114000013328932288
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -117,15 +117,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014162302210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42741a2b6eeecd4c866e818cca9a89c, type: 3}
+  m_Script: {fileID: 11500000, guid: 568d3407531c0304fbeb6d0db4f61f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFile: {fileID: 4900000, guid: 7609da402449d5540a51c0e97df2242e, type: 3}
-  floorTile: {fileID: 1000011355593892, guid: 2d05be350cabe6d41b604e46b6e930b9, type: 2}
-  wallBase: {fileID: 1000013343210806, guid: adbf596383cf3574db3343e13a7c7fa9, type: 2}
-  wallMid: {fileID: 1000013147083260, guid: fc51a2352208d124388a7f20a0efe627, type: 2}
-  wallTop: {fileID: 1000010393015662, guid: 7767345e2b97dc845928633e5abb0acd, type: 2}
-  boardTranslate: {x: -10, y: 5, z: 0}
+  levelManager: {fileID: 1000010021258474, guid: f4b1c4d6d2641a942a0013b5f271d350,
+    type: 2}
 --- !u!124 &124000011326549010
 Behaviour:
   m_ObjectHideFlags: 1
