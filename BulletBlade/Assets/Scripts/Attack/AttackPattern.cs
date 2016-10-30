@@ -9,7 +9,7 @@ public class AttackPattern : MonoBehaviour {
     {
         public GameObject bullet, behaviour;
 
-        public BulletSpawner spawner;
+        public GameObject spawner;
         public float time;
         public int repeat;
         public int round;
@@ -38,6 +38,8 @@ public class AttackPattern : MonoBehaviour {
                 s.gameObject.transform.SetParent(e.transform);
                 s.prefab = a.bullet;
                 s.behaviour = a.behaviour;
+                
+                s.track = e.p.gameObject;
                 a.round++;
                 a.time += a.cd;
             }

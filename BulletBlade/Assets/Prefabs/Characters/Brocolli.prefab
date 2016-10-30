@@ -159,6 +159,7 @@ MonoBehaviour:
   times: 0
   timeRemaining: 2
   prefab: {fileID: 1000011008092518, guid: 81edb9c9b8f222e4ba69adcbacb423fe, type: 2}
+  behaviour: {fileID: 0}
   round: 0
 --- !u!114 &114000012998068552
 MonoBehaviour:
@@ -181,7 +182,7 @@ MonoBehaviour:
   p: {fileID: 0}
   distance: 5
   maxHealth: 1
-  points: 0
+  points: 500
 --- !u!212 &212000011267460626
 SpriteRenderer:
   m_ObjectHideFlags: 1

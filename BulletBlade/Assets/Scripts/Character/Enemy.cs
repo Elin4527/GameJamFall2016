@@ -22,6 +22,7 @@ public class Enemy : BaseCharacter {
 
     protected override void init()
     {
+        p = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         currHealth = maxHealth;
         anim = GetComponent<Animator>();
         anim.SetBool("spawn", true);
@@ -57,10 +58,15 @@ public class Enemy : BaseCharacter {
     {
         dying = true;
         anim.SetBool("spawn", false);
+        p.score += points;
         yield return new WaitForEndOfFrame();
-
+        BulletSpawner[] b = GetComponentsInChildren<BulletSpawner>();
+        for (int i = 0; i < b.Length; i++)
+        {
+            Destroy(b[i]);
+        }
         Destroy(gameObject, anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-        
+
     }
 
     public void hit(int damage)

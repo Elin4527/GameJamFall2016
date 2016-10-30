@@ -155,7 +155,7 @@ MonoBehaviour:
   p: {fileID: 0}
   distance: 5
   maxHealth: 1
-  points: 0
+  points: 500
 --- !u!114 &114000012245691970
 MonoBehaviour:
   m_ObjectHideFlags: 1

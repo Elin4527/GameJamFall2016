@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerGraze: MonoBehaviour {
 
     Player parent;
+    public int points;
 	// Use this for initialization
 	void Start () {
         parent = GetComponentInParent<Player>();
@@ -14,16 +15,13 @@ public class PlayerGraze: MonoBehaviour {
 	
 	}
 
-    public void graze()
-    {
-        parent.graze = true;
-    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Bullet>())
         {
             parent.grazeCount++;
             parent.graze = true;
+            parent.score += points;
         }
     }
 }

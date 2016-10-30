@@ -58,7 +58,7 @@ public class Player : BaseCharacter {
             graze = false;
             if (++power > maxPower)
                 power = maxPower;
-            mana++;
+            mana+=5;
         }
         mana++;
         if (mana > maxMana)
@@ -157,6 +157,7 @@ public class Player : BaseCharacter {
     {
         state = ActionState.DYING;
         anim.SetBool("spawn", false);
+        score /= 2;
     }
 
     void walking()
