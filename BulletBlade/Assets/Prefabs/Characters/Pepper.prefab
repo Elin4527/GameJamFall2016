@@ -24,7 +24,7 @@ GameObject:
   - 61: {fileID: 61000013769466972}
   - 114: {fileID: 114000011666224750}
   - 50: {fileID: 50000011311312406}
-  - 95: {fileID: 95000013658639530}
+  - 95: {fileID: 95000011605390576}
   m_Layer: 9
   m_Name: Pepper
   m_TagString: Character
@@ -106,7 +106,7 @@ BoxCollider2D:
   m_Offset: {x: 0.009624243, y: -0.4330907}
   serializedVersion: 2
   m_Size: {x: 0.4793744, y: 0.9028387}
---- !u!95 &95000013658639530
+--- !u!95 &95000011605390576
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -147,9 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   camOffset: 5
-  cameraPos: {x: 0, y: 0, z: 0}
-  targetVel: {x: 0, y: 0}
-  direction: {x: 0, y: 0}
+  cameraPos: {x: 0.15713501, y: 0.3616786, z: 0}
+  targetVel: {x: 0.9877641, y: -0.15595521}
+  direction: {x: 6.3428526, y: -1.0014551}
   type: 1
   following: {fileID: 0}
   p: {fileID: 0}
@@ -169,19 +169,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletCount: 50
   delay: 0
-  cooldown: 0.5
+  cooldown: 0.25
   coneAngle: 360
   speed: 3
   distance: 2
   direction: {x: 1, y: 0}
   track: {fileID: 0}
-  dynamic: 1
+  dynamic: 0
   clockwise: 0
   total: 1
   times: 0
   timeRemaining: 2
-  prefab: {fileID: 1000011008092518, guid: 81edb9c9b8f222e4ba69adcbacb423fe, type: 2}
-  anim: {fileID: 9100000, guid: a46e7dc96610fd24796f3ed8bd4ae63b, type: 2}
+  prefab: {fileID: 1000012910095538, guid: f48fd504e9d48274888c1f09be810db4, type: 2}
+  behaviour: {fileID: 1000011865605014, guid: 7961d49313195eb479400b0354143c4c, type: 2}
   round: 0
 --- !u!212 &212000010551620924
 SpriteRenderer:
@@ -211,8 +211,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: 967adcfd9aa40f04da6a9035b4b55f01, type: 3}
+  m_SortingOrder: -1141
+  m_Sprite: {fileID: 21300002, guid: 967adcfd9aa40f04da6a9035b4b55f01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

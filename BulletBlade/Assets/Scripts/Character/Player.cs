@@ -4,12 +4,13 @@ using System;
 
 public class Player : BaseCharacter {
 
-    enum ActionState
+    public enum ActionState
     {
         STANDARD, DASHING, DYING
     }
 
-    ActionState state = ActionState.STANDARD;
+
+    public ActionState state = ActionState.STANDARD;
     public GameObject atkObj;
     public float dashDuration = 0.3f;
     public float invincibleDuration = 0.4f;
@@ -214,15 +215,5 @@ public class Player : BaseCharacter {
             return vel;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (isTangible() && collision.gameObject.GetComponent<Bullet>())
-        {
-            Destroy(collision.gameObject);
-            if (gameObject.activeSelf && state != ActionState.DYING)
-            {
-                kill();
-            }
-        }
-    }
+
 }
