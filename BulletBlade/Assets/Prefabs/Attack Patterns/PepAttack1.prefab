@@ -9,70 +9,70 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012470469164}
+  m_RootGameObject: {fileID: 1000013571946396}
   m_IsPrefabParent: 1
---- !u!1 &1000012470469164
+--- !u!1 &1000013571946396
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000010558793212}
-  - 114: {fileID: 114000012873876282}
+  - 4: {fileID: 4000010261402706}
+  - 114: {fileID: 114000010577890206}
   m_Layer: 0
-  m_Name: BroAttack1
+  m_Name: PepAttack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010558793212
+--- !u!4 &4000010261402706
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012470469164}
+  m_GameObject: {fileID: 1000013571946396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98448336, y: -0.041175295, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000012873876282
+--- !u!114 &114000010577890206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012470469164}
+  m_GameObject: {fileID: 1000013571946396}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35cdf69b8f11174408d039986e5c7f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackEventList:
-  - bullet: {fileID: 1000011964270966, guid: 9357f0c1d78047a48a38281d9045580b, type: 2}
-    behaviour: {fileID: 1000012636657892, guid: cf3ae9664a5b7844a92b85aadd54d3b3,
+  - bullet: {fileID: 1000012910095538, guid: f48fd504e9d48274888c1f09be810db4, type: 2}
+    behaviour: {fileID: 1000010831470286, guid: 489ddcdce7d76cf46846ed59d09e5651,
       type: 2}
-    spawner: {fileID: 1000012887339654, guid: a30f0a392046b8d4da363f491e9212b7, type: 2}
-    bullets: 20
+    spawner: {fileID: 1000013823906626, guid: ddabd8b9120c2df4685d722e701a7c69, type: 2}
+    bullets: 35
     time: 1
     repeat: 5
     round: 0
-    cd: 0.1
+    cd: 0.3
     offset: 0
     track: 0
     c: {r: 1, g: 1, b: 1, a: 1}
-  - bullet: {fileID: 1000011964270966, guid: 9357f0c1d78047a48a38281d9045580b, type: 2}
-    behaviour: {fileID: 1000012636657892, guid: cf3ae9664a5b7844a92b85aadd54d3b3,
+  - bullet: {fileID: 1000012910095538, guid: f48fd504e9d48274888c1f09be810db4, type: 2}
+    behaviour: {fileID: 1000010831470286, guid: 489ddcdce7d76cf46846ed59d09e5651,
       type: 2}
-    spawner: {fileID: 1000012887339654, guid: a30f0a392046b8d4da363f491e9212b7, type: 2}
-    bullets: 20
+    spawner: {fileID: 1000013823906626, guid: ddabd8b9120c2df4685d722e701a7c69, type: 2}
+    bullets: 35
     time: 1.75
     repeat: 5
     round: 0
-    cd: 0.1
+    cd: 0.3
     offset: -10
     track: 0
-    c: {r: 0, g: 1, b: 0, a: 1}
+    c: {r: 1, g: 0, b: 0.3931036, a: 1}

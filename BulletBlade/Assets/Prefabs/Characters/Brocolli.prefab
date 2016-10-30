@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011649131706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: -17, z: 0}
+  m_LocalPosition: {x: 15, y: -7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -120,7 +120,7 @@ MonoBehaviour:
   cameraPos: {x: 0, y: 0, z: 0}
   targetVel: {x: 0, y: 0}
   direction: {x: 0, y: 0}
-  type: 1
+  type: 0
   following: {fileID: 0}
   p: {fileID: 0}
   distance: 5

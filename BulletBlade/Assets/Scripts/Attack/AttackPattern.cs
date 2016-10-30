@@ -10,6 +10,7 @@ public class AttackPattern : MonoBehaviour {
         public GameObject bullet, behaviour;
 
         public GameObject spawner;
+        public int bullets;
         public float time;
         public int repeat;
         public int round;
@@ -41,6 +42,7 @@ public class AttackPattern : MonoBehaviour {
                 g.transform.SetParent(e.transform);
                 BulletSpawner s = g.GetComponent<BulletSpawner>();
 
+                s.bulletCount = a.bullets;
                 s.prefab = a.bullet;
                 s.behaviour = a.behaviour;
                 s.clr = a.c;
