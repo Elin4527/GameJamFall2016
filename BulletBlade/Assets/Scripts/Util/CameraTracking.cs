@@ -26,9 +26,10 @@ public class CameraTracking : MonoBehaviour {
     {
         if (!player.gameObject.activeSelf)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (transform.position == destination && player.GetComponent<Player>().lives != 0)
             {
                 player.gameObject.SetActive(true);
+                player.GetComponent<Player>().setInvulnerable(0.5f, true);
             }
         }
     }

@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012571655686}
   - 58: {fileID: 58000010023639328}
   - 114: {fileID: 114000010050748590}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DamageHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,9 +41,9 @@ GameObject:
   - 114: {fileID: 114000012601896628}
   - 58: {fileID: 58000011344803160}
   - 114: {fileID: 114000012963567032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerFab
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,17 @@ MonoBehaviour:
   invincibleDuration: 0.35
   attackCd: 0.2
   damage: 1
+  grazeCount: 0
+  graze: 0
+  maxMana: 0
+  mana: 0
+  manaCost: 0
+  cloneTime: 0
+  power: 1
+  maxPower: 128
+  lives: 3
+  score: 0
+  flickerTime: 0
 --- !u!114 &114000012963567032
 MonoBehaviour:
   m_ObjectHideFlags: 1

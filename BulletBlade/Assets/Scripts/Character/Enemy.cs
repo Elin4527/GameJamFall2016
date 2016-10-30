@@ -10,8 +10,10 @@ public class Enemy : BaseCharacter {
     }
     public EnemyAI type;
     public BaseCharacter following;
+    public Player p;
     public float distance;
     public int maxHealth = 1;
+    public int points;
     int currHealth;
     Animator anim;
 
@@ -43,9 +45,15 @@ public class Enemy : BaseCharacter {
     {
         if (currHealth <= 0)
         {
-            anim.SetBool("spawn", false);
-            Destroy(gameObject, anim.GetNextAnimatorClipInfo(0)[0].clip.length);
+            die();
         }
+    }
+
+    public void die()
+    {
+        anim.SetBool("spawn", false);
+        Destroy(gameObject, anim.GetNextAnimatorClipInfo(0)[0].clip.length);
+        
     }
 
     public void hit(int damage)
@@ -59,6 +67,7 @@ public class Enemy : BaseCharacter {
         Attack a = collision.gameObject.GetComponent<Attack>();
         if (a)
         {
+            Debug.Log("DAMAGE");
             hit(a.damage);
         }
     }
