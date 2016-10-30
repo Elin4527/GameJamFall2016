@@ -17,6 +17,7 @@ public class Enemy : BaseCharacter {
     int currHealth;
     Animator anim;
     float spawnTime;
+    bool dying=false;
 
 
     protected override void init()
@@ -46,7 +47,7 @@ public class Enemy : BaseCharacter {
     public override void logic()
     {
         spawnTime -= Time.deltaTime;
-        if (currHealth <= 0)
+        if (currHealth <= 0 && !dying)
         {
             StartCoroutine("die");
         }
@@ -54,9 +55,11 @@ public class Enemy : BaseCharacter {
 
     public IEnumerator die()
     {
+        dying = true;
         anim.SetBool("spawn", false);
         yield return new WaitForEndOfFrame();
-        Destroy(gameObject, anim.GetCurrentAnimatorClipInfo(0)[0].clip.length -.01f);
+
+        Destroy(gameObject, anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
         
     }
 
@@ -68,7 +71,7 @@ public class Enemy : BaseCharacter {
     void OnTriggerEnter2D(Collider2D collision)
     {
         Attack a = collision.gameObject.GetComponent<Attack>();
-        if (a && spawnTime < 0)
+        if (a && spawnTime < 0 )
         {
             hit(a.damage);
         }
