@@ -8,33 +8,22 @@ public class SpawnEnemyEvent : TimelineEvent {
 
     public float startTime;
     public float endTime;
-    public Vector3 spawnPos;
+    public Vector3 tileCoords;
     public GameObject enemy;
+    // public AttackPattern attackPattern;
 
-    private GameObject clonedEnemy;
-
-
-
-
-    public SpawnEnemyEvent(float ti, float tf, Transform parentTransform, Vector3 spawnPos, GameObject enemy) 
-        : base(ti, tf, parentTransform)
+    public void init(float ti, Transform parentTransform, Vector2 tileCoords, GameObject enemy) 
     {
-        this.spawnPos = spawnPos;
+        base.init(ti, parentTransform);
+
+        this.tileCoords = tileCoords;
         this.enemy = enemy;
     }
 
     public override void onStart()
     {
-        clonedEnemy = Instantiate(enemy, parentTransform) as GameObject;
-        clonedEnemy.transform.Translate(spawnPos);
+        enemy.transform.position = LevelManager.instance.convertTileCoords(tileCoords);
+        Instantiate(enemy);
 
     }
-
-    public override void onFinished()
-    {
-        // leaveScreen(); or // despawn(); etc...
-
-    }
-
-   
 }
