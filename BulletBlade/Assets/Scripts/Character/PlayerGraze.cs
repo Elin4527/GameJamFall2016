@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerDamage : MonoBehaviour {
+public class PlayerGraze: MonoBehaviour {
 
     Player parent;
 	// Use this for initialization
@@ -13,10 +13,16 @@ public class PlayerDamage : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void graze()
+    {
+        parent.graze = true;
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Bullet>())
         {
+            parent.grazeCount++;
             parent.graze = true;
         }
     }

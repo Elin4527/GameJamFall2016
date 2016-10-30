@@ -26,7 +26,7 @@ GameObject:
   - 50: {fileID: 50000013586062904}
   m_Layer: 0
   m_Name: Basic Attack
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3081f5f962d6c704aba175e3d830dab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
 --- !u!212 &212000010360324390
 SpriteRenderer:
   m_ObjectHideFlags: 1

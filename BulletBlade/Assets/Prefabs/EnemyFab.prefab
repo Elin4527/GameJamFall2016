@@ -23,9 +23,9 @@ GameObject:
   - 114: {fileID: 114000011114593924}
   - 61: {fileID: 61000013769466972}
   - 114: {fileID: 114000011666224750}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyFab
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,8 +86,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   type: 0
   following: {fileID: 0}
+  p: {fileID: 0}
   distance: 0
   maxHealth: 5
+  points: 0
 --- !u!212 &212000010551620924
 SpriteRenderer:
   m_ObjectHideFlags: 1
