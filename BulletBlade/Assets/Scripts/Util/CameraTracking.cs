@@ -16,20 +16,23 @@ public class CameraTracking : MonoBehaviour {
     float acceleration;
     Vector3 destination;
     Vector3 d;
+    Player p;
     
 
 	// Use this for initialization
 	void Start () {
-	}
+        p = player.GetComponent<Player>();
+    }
 
     void Update()
     {
-        if (!player.gameObject.activeSelf)
+        if (p != null && !p.gameObject.activeSelf)
         {
-            if (transform.position == destination && player.GetComponent<Player>().lives != 0)
+            if (transform.position == destination && p.lives != 0)
             {
-                player.gameObject.SetActive(true);
-                player.GetComponent<Player>().setInvulnerable(0.5f, true);
+                p.gameObject.SetActive(true);
+                p.GetComponent<Player>().setInvulnerable(1.5f, true);
+                p.mana = Mathf.Max(p.mana, p.maxMana / 2);
             }
         }
     }

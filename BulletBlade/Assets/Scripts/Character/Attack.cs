@@ -14,7 +14,7 @@ public class Attack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Destroy(gameObject, a.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+        Destroy(gameObject, a.GetCurrentAnimatorClipInfo(0)[0].clip.length - 0.01f);
     }
 
 
