@@ -23,15 +23,9 @@ GameObject:
   - 114: {fileID: 114000010382430682}
   - 61: {fileID: 61000010474866696}
   - 114: {fileID: 114000013158172772}
-<<<<<<< HEAD:BulletBlade/Assets/Prefabs/TileFabs/OuterWall1.prefab
   m_Layer: 10
-  m_Name: OuterWall1
-  m_TagString: Walls
-=======
-  m_Layer: 0
   m_Name: WallMid
-  m_TagString: Untagged
->>>>>>> refs/remotes/origin/tilemap-branch:BulletBlade/Assets/Prefabs/TileFabs/WallMid.prefab
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
