@@ -6,13 +6,20 @@ using Random = UnityEngine.Random;
 public class TileMapGen : MonoBehaviour
 {
 
+   
+
     public TextAsset textFile;
     int [][] map;
     int columns;
     int rows;
 
-    public GameObject[] floorTiles;
-    public GameObject[] wallTiles;
+    public GameObject floorTile;   // 0
+    public GameObject wallBase;    // 1
+    public GameObject wallMid;     // 2
+    public GameObject wallTop;     // 3
+
+    public Vector3 boardTranslate;
+
     private Transform boardHolder;
 
 
@@ -69,27 +76,34 @@ public class TileMapGen : MonoBehaviour
 
         boardHolder = new GameObject("Board").transform;
 
-        GameObject toInstantiate;
 
-        for (int x = -1; x < columns + 1; x++)
+
+        GameObject toInstantiate = null;
+
+        for (int x = 0; x < columns; x++)
         {
-            for (int y = -1; y < rows + 1; y++)
+            for (int y = 0; y < rows; y++)
             {
 
-                if (x == -1 || x == columns || y == -1 || y == rows)
-                {
-                    toInstantiate = wallTiles[Random.Range(0, wallTiles.Length)];
 
+                if (map[y][x] == 0)
+                {
+                    toInstantiate = floorTile;
                 }
 
                 else if (map[y][x]== 1)
                 {
-                    toInstantiate = wallTiles[Random.Range(0, floorTiles.Length)];
+                    toInstantiate = wallBase;
                 }
 
-                else
+                else if (map[y][x] == 2)
                 {
-                    toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
+                    toInstantiate = wallMid;
+                }
+
+                else if (map[y][x] == 3)
+                {
+                    toInstantiate = wallTop;
                 }
 
                 GameObject instance = Instantiate(toInstantiate, new Vector3(x, -y, 0.0f), Quaternion.identity) as GameObject;
@@ -99,6 +113,11 @@ public class TileMapGen : MonoBehaviour
             }
 
         }
+    }
+
+    void Update()
+    {
+        boardHolder.position = boardTranslate;
     }
 
 }
