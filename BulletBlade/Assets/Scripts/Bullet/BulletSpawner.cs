@@ -16,6 +16,7 @@ public class BulletSpawner : MonoBehaviour {
     public bool clockwise;
     public bool total;
     public int times;
+    public Color clr;
 
     float wait;
     public float timeRemaining = 0;
@@ -41,11 +42,10 @@ public class BulletSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!firing)
-        {
-            timeRemaining -= Time.deltaTime;
-        }
-        if (timeRemaining <= 0)
+
+        timeRemaining -= Time.deltaTime;
+        
+        if (timeRemaining <= 0 && !firing)
         {
             // Set initial firing variables based on public variables
             firing = true;
@@ -106,6 +106,7 @@ public class BulletSpawner : MonoBehaviour {
         g.transform.SetParent(transform.parent.parent);
         Bullet b = g.GetComponent<Bullet>();
         b.velocity = speed * angle;
+        b.GetComponent<SpriteRenderer>().color = clr;
         if (track)
         {
             b.p = track.GetComponent<BaseCharacter>();

@@ -14,6 +14,9 @@ public class AttackPattern : MonoBehaviour {
         public int repeat;
         public int round;
         public float cd;
+        public float offset;
+        public bool track;
+        public Color c = Color.white;
     }
     Enemy e;
 
@@ -34,12 +37,16 @@ public class AttackPattern : MonoBehaviour {
             a.time -= elapsedTime;
             while (a.time < 0 && (a.repeat == 0 || a.round < a.repeat))
             {
-                BulletSpawner s = Instantiate(a.spawner, e.gameObject.transform.position, Quaternion.identity) as BulletSpawner;
-                s.gameObject.transform.SetParent(e.transform);
+                GameObject g = Instantiate(a.spawner, e.gameObject.transform.position, Quaternion.identity) as GameObject;
+                g.transform.SetParent(e.transform);
+                BulletSpawner s = g.GetComponent<BulletSpawner>();
+
+
                 s.prefab = a.bullet;
                 s.behaviour = a.behaviour;
-                
-                s.track = e.p.gameObject;
+                s.clr = a.c;
+                if(a.track) s.track = e.p.gameObject;
+                s.offset += a.offset;
                 a.round++;
                 a.time += a.cd;
             }
