@@ -1,22 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseCharacter : MonoBehaviour {
 
     public float speed = 3;
     public float camOffset = 5;
     public Vector3 cameraPos;
     public Vector2 targetVel = Vector2.zero;
-    Vector2 vel;
+    protected Vector2 vel;
     Vector2 delta;
-    protected Rigidbody2D rb;
     public Vector2 direction;
     
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         init();
     }
 
@@ -25,27 +21,30 @@ public abstract class BaseCharacter : MonoBehaviour {
 
     void FixedUpdate()
     {
-        rb.velocity = vel += delta;
-        if (Mathf.Abs(rb.velocity.x - targetVel.x) + Mathf.Abs(rb.velocity.y - targetVel.y) < 0.1f)
+        vel += delta;
+        if (Mathf.Abs(vel.x - targetVel.x) + Mathf.Abs(vel.y - targetVel.y) < 0.1f)
         {
             setVelocity(targetVel);
         }
-        direction = rb.velocity;
+        transform.position += (Vector3)vel * Time.fixedDeltaTime;
+        fixedLogic();
     }
+
+
 
     void Update()
     {
         Vector2 i = getInput();
         setTargetVel(i);
         logic();
-        cameraPos = rb.position + direction.normalized * camOffset;
+        cameraPos = (Vector2)transform.position + direction.normalized * camOffset;
     }
 
     public void reset()
     {
         setVelocity(Vector2.zero);
         direction = Vector2.zero;
-        cameraPos = rb.position + direction.normalized * camOffset;
+        cameraPos = (Vector2)transform.position;
     }
 
     public void setTargetVel(Vector2 v)
@@ -53,12 +52,12 @@ public abstract class BaseCharacter : MonoBehaviour {
         if (v == targetVel)
             return;
         targetVel = v;
-        delta = (v - rb.velocity) * (Time.fixedDeltaTime / 0.1f);
+        delta = (v - vel) * (Time.fixedDeltaTime / 0.1f);
     }
 
     public void setVelocity(Vector2 v)
     {
-        rb.velocity = vel = v;
+        vel = v;
         setTargetVel(v);
         delta = Vector2.zero;
     }
@@ -74,5 +73,7 @@ public abstract class BaseCharacter : MonoBehaviour {
     }
 
     public abstract Vector2 getInput();
-    public abstract void logic();
+    public virtual void logic() { }
+    public virtual void fixedLogic() { }
+
 }

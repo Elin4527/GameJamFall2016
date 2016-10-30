@@ -22,10 +22,10 @@ GameObject:
   - 212: {fileID: 212000013883034040}
   - 95: {fileID: 95000010543606762}
   - 58: {fileID: 58000013530659222}
-  - 50: {fileID: 50000012929445332}
   - 114: {fileID: 114000010107923306}
   - 114: {fileID: 114000013645795266}
   - 114: {fileID: 114000010929050442}
+  - 50: {fileID: 50000010773742350}
   m_Layer: 0
   m_Name: BulletFab
   m_TagString: Untagged
@@ -46,7 +46,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &50000012929445332
+--- !u!50 &50000010773742350
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
@@ -86,7 +86,7 @@ Animator:
   m_GameObject: {fileID: 1000011008092518}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a46e7dc96610fd24796f3ed8bd4ae63b, type: 2}
+  m_Controller: {fileID: 9100000, guid: f9f17d13bbdcf114a9694637ad954c26, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,10 +107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds:
     serializedVersion: 2
-    x: -10
-    y: -10
-    width: 20
-    height: 20
+    x: -100
+    y: -100
+    width: 200
+    height: 200
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
 --- !u!114 &114000010929050442

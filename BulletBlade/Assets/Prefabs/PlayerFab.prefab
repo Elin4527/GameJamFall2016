@@ -39,7 +39,6 @@ GameObject:
   - 95: {fileID: 95000012683665698}
   - 212: {fileID: 212000010634672188}
   - 114: {fileID: 114000012601896628}
-  - 50: {fileID: 50000010882785756}
   - 58: {fileID: 58000011344803160}
   - 114: {fileID: 114000012963567032}
   m_Layer: 0
@@ -76,23 +75,6 @@ Transform:
   - {fileID: 4000012571655686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &50000010882785756
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013839583628}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &58000010023639328
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -160,9 +142,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dded0d939334d5242a2c606ae551995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  camOffset: 5
+  speed: 2
+  camOffset: 1.5
   cameraPos: {x: 0, y: 0, z: 0}
+  targetVel: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  atkObj: {fileID: 1000013080388484, guid: 85b3c6bc5d6a22d4b915c5165af1d47e, type: 2}
+  dashDuration: 0.3
+  invincibleDuration: 0.35
+  attackCd: 0.2
+  damage: 1
 --- !u!114 &114000012963567032
 MonoBehaviour:
   m_ObjectHideFlags: 1
