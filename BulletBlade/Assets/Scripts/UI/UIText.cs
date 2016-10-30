@@ -14,6 +14,6 @@ public class UIText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        t.text = "SCORE: \t" + p.score + "\n\nLIVES: \t" + p.lives + "\n\nPOWER: \t" + p.power + "\n\nGRAZE: \t" + p.grazeCount;
+        t.text = "SCORE:\n" + p.score + "\n\nLIVES: \t\t" + p.lives + "\n\nPOWER: \t" + p.power + "\n\nGRAZE: \t" + p.grazeCount;
 	}
 }
