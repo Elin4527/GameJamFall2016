@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : BaseCharacter {
 
@@ -19,8 +20,10 @@ public class Player : BaseCharacter {
     public int damage;
     float cdRemain = 0;
     public int grazeCount = 0;
-    bool graze = false;
-
+    public bool graze = false;
+    public int maxMana;
+    public int mana;
+    public int manaCost;
 
     public float cloneTime;
     float cloneCD;
@@ -28,10 +31,27 @@ public class Player : BaseCharacter {
 	// Use this for initialization
 	protected override void init () {
         anim = GetComponent<Animator>();
-	}
+        anim.speed = 1.4f;
+        manaCost = maxMana / 4;
+    }
 
-	// Update is called once per frame
-	public override void logic () {
+    public override void fixedLogic()
+    {
+        if (graze)
+        {
+            grazeCount++;
+            graze = false;
+            mana++;
+        }
+        mana++;
+        if (mana > maxMana)
+        {
+            mana = maxMana;
+        }
+    }
+
+    // Update is called once per frame
+    public override void logic () {
         direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
 
         switch (state)
@@ -46,9 +66,10 @@ public class Player : BaseCharacter {
                     if (actionTime < 0.0)
                     {
                         state = ActionState.STANDARD;
-                        anim.speed = 1.0f;
+                        anim.speed = 1.4f;
                         setVelocity(direction.normalized * speed);
                         setTargetVel(new Vector2(0, 0));
+                        anim.SetBool("isDashing", false);
                     }
                     else if (cloneCD <= 0)
                     {
@@ -75,11 +96,7 @@ public class Player : BaseCharacter {
                 break;
         }
         invincibleTIme -= Time.deltaTime;
-        if (graze)
-        {
-            grazeCount++;
-            graze = false;
-        }
+
     }
 
     public bool isTangible()
@@ -98,7 +115,6 @@ public class Player : BaseCharacter {
     {
         bool walk = isWalking();
         anim.SetBool("isWalking", walk);
-        
     }
 
     void dash()
@@ -112,7 +128,7 @@ public class Player : BaseCharacter {
         Vector2 towards = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
         setVelocity(towards.normalized * Mathf.Min((speed * 2.0f), towards.magnitude/dashDuration));
 
-        anim.speed = 4.0f;
+        anim.SetBool("isDashing", true);
     }
 
     void attack()
@@ -137,8 +153,9 @@ public class Player : BaseCharacter {
             float y = Input.GetAxisRaw("Vertical");
             setTargetVel(new Vector2(x, y).normalized * speed);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && mana > manaCost)
             {
+                mana -= manaCost;
                 dash();
             }
 
@@ -148,11 +165,14 @@ public class Player : BaseCharacter {
             return vel;
     }
 
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Bullet>())
+        if (isTangible() && collision.gameObject.GetComponent<Bullet>())
         {
-            graze = true;
+            Destroy(collision.gameObject);
+            kill();
         }
     }
 }

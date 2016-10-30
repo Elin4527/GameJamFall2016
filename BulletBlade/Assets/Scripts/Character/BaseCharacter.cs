@@ -27,7 +27,10 @@ public abstract class BaseCharacter : MonoBehaviour {
             setVelocity(targetVel);
         }
         transform.position += (Vector3)vel * Time.fixedDeltaTime;
+        fixedLogic();
     }
+
+
 
     void Update()
     {
@@ -70,5 +73,7 @@ public abstract class BaseCharacter : MonoBehaviour {
     }
 
     public abstract Vector2 getInput();
-    public abstract void logic();
+    public virtual void logic() { }
+    public virtual void fixedLogic() { }
+
 }
