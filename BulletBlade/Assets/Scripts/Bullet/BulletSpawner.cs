@@ -20,10 +20,11 @@ public class BulletSpawner : MonoBehaviour {
     public float timeRemaining = 0;
     Vector2 angle;
     public GameObject prefab;
-    public RuntimeAnimatorController anim;
+    public GameObject behaviour;
     bool firing = false;
     int shotCount;
     public int round = 0;
+
 
 	// Use this for initialization
 	void Start () {
@@ -99,11 +100,10 @@ public class BulletSpawner : MonoBehaviour {
     void fireBullet()
     {
         angle = angle.normalized;
-        GameObject g = (GameObject)Instantiate(prefab, transform.position + (Vector3) angle * distance, Quaternion.Euler(0, 0, Bullet.convertAngle(angle)));
+        GameObject g = Instantiate(prefab, transform.position + (Vector3) angle * distance, Quaternion.Euler(0, 0, Bullet.convertAngle(angle))) as GameObject;
+        g.transform.SetParent(transform.parent.parent);
         Bullet b = g.GetComponent<Bullet>();
         b.velocity = speed * angle;
-        
-        b.GetComponent<BulletBehaviour>().startUp();
-        b.GetComponent<Animator>().runtimeAnimatorController = anim;
+        g.AddComponent(behaviour.GetComponent<BulletBehaviour>().GetType());
     }
 }
