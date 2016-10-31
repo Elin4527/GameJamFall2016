@@ -74,7 +74,7 @@ public class TileMapGen : MonoBehaviour
     {
 
 
-        gameObject.transform.Translate(boardTranslate);
+        gameObject.transform.position = (boardTranslate);
 
         GameObject toInstantiate = null;
 

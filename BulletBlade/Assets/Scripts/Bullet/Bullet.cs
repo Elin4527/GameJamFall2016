@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
     public Rect bounds;
     public Vector2 velocity;
     public Vector2 acceleration;
+    public BaseCharacter p;
     Rigidbody2D rb;
 
 	// Use this for initialization

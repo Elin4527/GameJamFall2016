@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012436239398}
-  - 114: {fileID: 114000010660851400}
+  - 114: {fileID: 114000013392485616}
   m_Layer: 0
   m_Name: TimelineExecutor1
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000010660851400
+--- !u!114 &114000013392485616
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,17 +48,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011716530088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052d87bdbab25cb4da9e2feea1bec4c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c06d7ba663bf134293863aac8134fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnEnemyEvents:
-  - name: Pepper
-    startTime: 5
-    tileCoords: {x: 7, y: 2}
+  - name: Brocolli
+    startTime: 1.5
+    tileCoords: {x: 5, y: 5}
     enemy: {fileID: 1000011649131706, guid: 04d25a264d6c8b84e9d126471020aa07, type: 2}
+    attack: {fileID: 1000012470469164, guid: 6ac1c4be1016029469d0821495b1779e, type: 2}
+    despawn: 15
+  - name: Brocolli
+    startTime: 1.5
+    tileCoords: {x: 25, y: 5}
+    enemy: {fileID: 1000011649131706, guid: 04d25a264d6c8b84e9d126471020aa07, type: 2}
+    attack: {fileID: 1000012470469164, guid: 6ac1c4be1016029469d0821495b1779e, type: 2}
+    despawn: 15
+  - name: Brocolli
+    startTime: 1.5
+    tileCoords: {x: 15, y: 15}
+    enemy: {fileID: 1000011649131706, guid: 04d25a264d6c8b84e9d126471020aa07, type: 2}
+    attack: {fileID: 1000012470469164, guid: 6ac1c4be1016029469d0821495b1779e, type: 2}
+    despawn: 15
+  - name: Pepper
+    startTime: 15
+    tileCoords: {x: 15, y: 15}
+    enemy: {fileID: 1000013488066962, guid: 244cd18374e8e024b9debb4dff45184a, type: 2}
+    attack: {fileID: 1000013571946396, guid: 58a04bfe27051e0429de05d29813a6ba, type: 2}
+    despawn: 15
+  - name: Pepper
+    startTime: 15
+    tileCoords: {x: 20, y: 10}
+    enemy: {fileID: 1000013488066962, guid: 244cd18374e8e024b9debb4dff45184a, type: 2}
+    attack: {fileID: 1000013571946396, guid: 58a04bfe27051e0429de05d29813a6ba, type: 2}
+    despawn: 15
+  - name: Pepper
+    startTime: 15
+    tileCoords: {x: 10, y: 5}
+    enemy: {fileID: 1000013488066962, guid: 244cd18374e8e024b9debb4dff45184a, type: 2}
+    attack: {fileID: 1000013571946396, guid: 58a04bfe27051e0429de05d29813a6ba, type: 2}
+    despawn: 15
   bossSpawnEvent:
     name: Pumpkin
-    startTime: 15
-    tileCoords: {x: 15, y: 5}
-    enemy: {fileID: 1000011649131706, guid: 04d25a264d6c8b84e9d126471020aa07, type: 2}
-  nextLevelDelay: 5
+    startTime: 40
+    tileCoords: {x: 30, y: 10}
+    enemy: {fileID: 1000013670367058, guid: 37c855f190bd6ce45a52a670b1cfea8b, type: 2}
+    attack: {fileID: 1000011970584258, guid: d1f898fd0bf4f1b458d77a9f24280b8d, type: 2}
+    despawn: 0
+  nextLevelDelay: 10

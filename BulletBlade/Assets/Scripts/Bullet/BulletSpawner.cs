@@ -7,6 +7,7 @@ public class BulletSpawner : MonoBehaviour {
     public float delay;
     public float cooldown;
     public float coneAngle;
+    public float offset;
     public float speed;
     public float distance;
     public Vector2 direction;
@@ -15,6 +16,7 @@ public class BulletSpawner : MonoBehaviour {
     public bool clockwise;
     public bool total;
     public int times;
+    public Color clr;
 
     float wait;
     public float timeRemaining = 0;
@@ -30,21 +32,20 @@ public class BulletSpawner : MonoBehaviour {
 	void Start () {
 	}
 
-    void turnAngle()
+    void turnAngle(float a)
     {
-        if (coneAngle == 0) return;
-        float w = (clockwise ? 1: -1) * coneAngle * Mathf.PI / 180 / bulletCount;
+        if (a == 0) return;
+        float w = (clockwise ? 1: -1) * a * Mathf.PI / 180 ;
         float sin = Mathf.Sin(w), cos = Mathf.Cos(w);
         angle = new Vector2(cos * angle.x + sin * angle.y, -sin * angle.x + cos * angle.y);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!firing)
-        {
-            timeRemaining -= Time.deltaTime;
-        }
-        if (timeRemaining <= 0)
+
+        timeRemaining -= Time.deltaTime;
+        
+        if (timeRemaining <= 0 && !firing)
         {
             // Set initial firing variables based on public variables
             firing = true;
@@ -57,6 +58,7 @@ public class BulletSpawner : MonoBehaviour {
             {
                 angle = direction;
             }
+            turnAngle(offset);
             shotCount = 0;
             wait = total ? (delay / bulletCount) : delay; ;
         }
@@ -69,7 +71,7 @@ public class BulletSpawner : MonoBehaviour {
                 for (int i = 0; i < bulletCount; i++)
                 {
                     fireBullet();
-                    turnAngle();
+                    turnAngle(coneAngle/bulletCount);
                 }
                 firing = false;
             }
@@ -86,7 +88,7 @@ public class BulletSpawner : MonoBehaviour {
                     {
                         angle = track.transform.position - transform.position;
                     }
-                    else turnAngle();
+                    else turnAngle(coneAngle/bulletCount);
                 }
             }
 
@@ -104,6 +106,11 @@ public class BulletSpawner : MonoBehaviour {
         g.transform.SetParent(transform.parent.parent);
         Bullet b = g.GetComponent<Bullet>();
         b.velocity = speed * angle;
+        b.GetComponent<SpriteRenderer>().color = clr;
+        if (track)
+        {
+            b.p = track.GetComponent<BaseCharacter>();
+        }
         g.AddComponent(behaviour.GetComponent<BulletBehaviour>().GetType());
     }
 }
