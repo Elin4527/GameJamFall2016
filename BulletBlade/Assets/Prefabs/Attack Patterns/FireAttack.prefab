@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000011970584258}
+  m_IsPrefabParent: 1
+--- !u!1 &1000011970584258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010420245834}
+  - 114: {fileID: 114000014201487728}
+  m_Layer: 0
+  m_Name: FireAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010420245834
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011970584258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000014201487728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011970584258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cdf69b8f11174408d039986e5c7f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackEventList:
+  - bullet: {fileID: 1000011008092518, guid: 81edb9c9b8f222e4ba69adcbacb423fe, type: 2}
+    behaviour: {fileID: 1000013105893968, guid: 22dff4214c6466544b2469e1c762a963,
+      type: 2}
+    spawner: {fileID: 1000013823906626, guid: ddabd8b9120c2df4685d722e701a7c69, type: 2}
+    bullets: 15
+    time: 1
+    repeat: 5
+    round: 0
+    cd: 0.3
+    offset: 0
+    track: 1
+    c: {r: 1, g: 1, b: 1, a: 1}
+  - bullet: {fileID: 1000011008092518, guid: 81edb9c9b8f222e4ba69adcbacb423fe, type: 2}
+    behaviour: {fileID: 1000013105893968, guid: 22dff4214c6466544b2469e1c762a963,
+      type: 2}
+    spawner: {fileID: 1000013823906626, guid: ddabd8b9120c2df4685d722e701a7c69, type: 2}
+    bullets: 15
+    time: 1.75
+    repeat: 5
+    round: 0
+    cd: 0.3
+    offset: -10
+    track: 1
+    c: {r: 1, g: 0, b: 0.3931036, a: 1}
