@@ -54,7 +54,6 @@ public class Player : BaseCharacter {
     {
         if (graze)
         {
-            grazeCount++;
             graze = false;
             if (++power > maxPower)
                 power = maxPower;
@@ -182,7 +181,7 @@ public class Player : BaseCharacter {
 
     void attack()
     {
-        GameObject g = (GameObject)Instantiate(atkObj, transform.position + (Vector3)direction.normalized * 1, 
+        GameObject g = (GameObject)Instantiate(atkObj, transform.position + (Vector3)direction.normalized * 0.75f, 
             Quaternion.Euler(0, 0, ((direction.y < 0) ? -1 : 1) * Vector2.Angle(Vector2.right, direction)));
         Attack a = g.GetComponent<Attack>();
         a.damage = power;
@@ -190,6 +189,9 @@ public class Player : BaseCharacter {
 
     public override Vector2 getInput()
     {
+        if (state == ActionState.DYING)
+            return Vector2.zero;
+
         cdRemain -= Time.deltaTime;
         if (Input.GetMouseButton(1) && cdRemain <= 0)
         {
@@ -210,8 +212,6 @@ public class Player : BaseCharacter {
 
             return (new Vector2(x, y).normalized * speed);
         }
-        else if (state == ActionState.DYING)
-            return Vector2.zero;
         else
             return vel;
     }

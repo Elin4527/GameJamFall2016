@@ -17,7 +17,7 @@ public class PlayerGraze: MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Bullet>())
+        if (collision.gameObject.GetComponent<Bullet>() && parent.state != Player.ActionState.DYING)
         {
             parent.grazeCount++;
             parent.graze = true;
