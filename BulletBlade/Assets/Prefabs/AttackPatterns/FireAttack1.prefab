@@ -55,7 +55,7 @@ MonoBehaviour:
     cd: 0.3
     offset: 0
     track: 1
-    c: {r: 1, g: 0.9220363, b: 0, a: 1}
+    c: {r: 1, g: 0.41291898, b: 0, a: 1}
   - bullet: {fileID: 1000011008092518, guid: 81edb9c9b8f222e4ba69adcbacb423fe, type: 3}
     behaviour: {fileID: 1000013105893968, guid: 22dff4214c6466544b2469e1c762a963,
       type: 3}
@@ -67,4 +67,4 @@ MonoBehaviour:
     cd: 0.3
     offset: -10
     track: 1
-    c: {r: 0.92156863, g: 0, b: 0.045197487, a: 1}
+    c: {r: 0.1981132, g: 0, b: 0.009664049, a: 1}

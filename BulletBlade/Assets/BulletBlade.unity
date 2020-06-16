@@ -468,9 +468,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1000012509858064, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
-      propertyPath: m_Name
-      value: Zoom Camera
+    - target: {fileID: 1360201975, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360201977, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360201977, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1000013839583628, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
       propertyPath: m_Name
@@ -506,6 +514,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013811781576, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013811781576, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013811781576, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013811781576, guid: 9f67a18d0c64fd94ca8744f600a2d2c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
